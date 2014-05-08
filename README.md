@@ -1,10 +1,11 @@
-Inquirer.js
-===========
-
-[![npm](https://badge.fury.io/js/inquirer.svg)](http://badge.fury.io/js/inquirer) [![tests](https://travis-ci.org/SBoudrias/Inquirer.js.svg?branch=master)](http://travis-ci.org/SBoudrias/Inquirer.js) [![dependencies](https://david-dm.org/SBoudrias/Inquirer.js.svg?theme=shields.io)](https://david-dm.org/SBoudrias/Inquirer.js)
+# asks [![npm](https://badge.fury.io/js/asks.svg)](http://badge.fury.io/js/asks) [![tests](https://travis-ci.org/kaelzhang/asks.svg?branch=master)](http://travis-ci.org/kaelzhang/asks) [![dependencies](https://david-dm.org/kaelzhang/asks.svg?theme=shields.io)](https://david-dm.org/kaelzhang/asks)
 
 A collection of common interactive command line user interfaces.
 
+This is an altered version of [inquirer.js](https://www.npmjs.org/package/inquirer). Thanks Simon Boudrias for the awesome package.
+
+- `done(null)` as a success
+- `this.async()` is now available for `.default` function.
 
 ## Goal and philosophy
 
@@ -20,12 +21,12 @@ _**Inquirer**_ provide the user interface, and the inquiry session flow. If you'
 ### Installation
 
 ``` shell
-npm install inquirer
+npm install asks --save
 ```
 
 ```javascript
-var inquirer = require("inquirer");
-inquirer.prompt([/* Pass your questions in here */], function( answers ) {
+var asks = require("asks");
+asks.prompt([/* Pass your questions in here */], function( answers ) {
 	// Use user feedback for... whatever!!
 });
 ```
@@ -43,7 +44,7 @@ node examples/checkbox.js
 
 ### Methods
 
-`inquirer.prompt( questions, callback )`
+`asks.prompt( questions, callback )`
 
 Launch the prompt interface (inquiry session)
 
@@ -60,17 +61,23 @@ A question object is a `hash` containing question related values:
 `list`, `rawlist`
 - **name**: (String) The name to use when storing the answer in the anwers hash.
 - **message**: (String) The question to print.
-- **default**: (String|Number|Array|Function) Default value(s) to use if nothing is entered, or a function that returns the default value(s). If defined as a function, the first parameter will be the current inquirer session answers.
-- **choices**: (Array|Function) Choices array or a function returning a choices array. If defined as a function, the first parameter will be the current inquirer session answers.  
+- **default**: (String|Number|Array|Function) Default value(s) to use if nothing is entered, or a function that returns the default value(s). If defined as a function, the first parameter will be the current asks session answers.
+- **choices**: (Array|Function) Choices array or a function returning a choices array. If defined as a function, the first parameter will be the current asks session answers.  
 Array values can be simple `strings`, or `objects` containing a `name` (to display) and a `value` properties (to save in the answers hash). Values can also be [a `Separator`](#separator).
 - **validate**: (Function) Receive the user input and should return `true` if the value is valid, and an error message (`String`) otherwise. If `false` is returned, a default error message is provided.
 - **filter**: (Function) Receive the user input and return the filtered value to be used inside the program. The value returned will be added to the _Answers_ hash.
 - **when**: (Function) Receive the current user answers hash and should return `true` or `false` depending on whether or not this question should be asked.
 
-`validate`, `filter` and `when` functions can be asynchronously using `this.async()`. You just have to pass the value you'd normally return to the callback option.
+`default`, `validate`, `filter` and `when` functions can be asynchronously using `this.async()`. You just have to pass the value you'd normally return to the callback option.
 
 ``` javascript
 {
+  default: function(answers){
+  	var done = this.async();
+  	getAsynchronously(function(value){
+  	  done(value);
+  	});
+  },
   validate: function(input) {
 
     // Declare function as asynchronous, and save the done callback
@@ -84,7 +91,7 @@ Array values can be simple `strings`, or `objects` containing a `name` (to displ
         return;
       }
       // Pass the return value in the done callback
-      done(true);
+      done(null);
     }, 3000);
   }
 }
@@ -104,7 +111,7 @@ A separator can be added to any `choices` array:
 
 ```
 // In the question object
-choices: [ "Choice A", new inquirer.Separator(), "choice B" ]
+choices: [ "Choice A", new asks.Separator(), "choice B" ]
 
 // Which'll be displayed this way
 [?] What do you want to do?
@@ -194,12 +201,12 @@ Take `type`, `name`, `message`[, `default`, `filter`, `validate`] properties.
 
 Along with the prompts, Inquirer offers some basic text UI.
 
-#### Bottom Bar - `inquirer.ui.BottomBar`
+#### Bottom Bar - `asks.ui.BottomBar`
 
 This UI present a fixed text at the bottom of a free text zone. This is useful to keep a message to the bottom of the screen while outputting command outputs on the higher section.
 
 ```javascript
-var ui = new inquirer.ui.BottomBar();
+var ui = new asks.ui.BottomBar();
 
 // pipe a Stream to the log zone
 outputStream.pipe( ui.log );
@@ -213,9 +220,9 @@ ui.log.write("Almost over, standby!");
 ui.updateBottomBar("new bottom bar content");
 ```
 
-#### Prompt - `inquirer.ui.Prompt`
+#### Prompt - `asks.ui.Prompt`
 
-This is UI layout used to run prompt. This layout is returned by `inquirer.prompt` and you should probably always use `inquirer.prompt` to interface with this UI.
+This is UI layout used to run prompt. This layout is returned by `asks.prompt` and you should probably always use `asks.prompt` to interface with this UI.
 
 
 ## Support (OS Terminals)
@@ -261,5 +268,6 @@ to @vaxilart) or just add your name to [the wiki](https://github.com/SBoudrias/I
 
 ## License
 
-Copyright (c) 2012 Simon Boudrias (twitter: @vaxilart)  
+Copyright (c) 2012 Simon Boudrias (twitter: @vaxilart)
+Altered by Kael (@kaelzhang)
 Licensed under the MIT license.
