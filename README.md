@@ -4,9 +4,6 @@ A collection of common interactive command line user interfaces.
 
 This is an altered version of [inquirer.js](https://www.npmjs.org/package/inquirer). Thanks Simon Boudrias for the awesome package.
 
-- `done(null)` as a success
-- `this.async()` is now available for `.default` function.
-
 ## Goal and philosophy
 
 We strive at providing easily embeddable and beautiful command line interface for Node.js; some hope in becoming the CLI Xanadu.
@@ -68,7 +65,7 @@ Array values can be simple `strings`, or `objects` containing a `name` (to displ
 - **filter**: (Function) Receive the user input and return the filtered value to be used inside the program. The value returned will be added to the _Answers_ hash.
 - **when**: (Function) Receive the current user answers hash and should return `true` or `false` depending on whether or not this question should be asked.
 
-`default`, `validate`, `filter` and `when` functions can be asynchronously using `this.async()`. You just have to pass the value you'd normally return to the callback option.
+`default`(if defined as a function), `validate`, `filter` and `when` functions can be asynchronously using `this.async()`. You just have to pass the value you'd normally return to the callback option.
 
 ``` javascript
 {
