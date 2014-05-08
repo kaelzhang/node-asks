@@ -4,6 +4,8 @@ A collection of common interactive command line user interfaces.
 
 This is an altered version of [inquirer.js](https://www.npmjs.org/package/inquirer). Thanks Simon Boudrias for the awesome package.
 
+- `this.async()` is now available for `.default` function.
+
 ## Goal and philosophy
 
 We strive at providing easily embeddable and beautiful command line interface for Node.js; some hope in becoming the CLI Xanadu.
@@ -24,7 +26,7 @@ npm install asks --save
 ```javascript
 var asks = require("asks");
 asks.prompt([/* Pass your questions in here */], function( answers ) {
-	// Use user feedback for... whatever!!
+  // Use user feedback for... whatever!!
 });
 ```
 
@@ -70,10 +72,10 @@ Array values can be simple `strings`, or `objects` containing a `name` (to displ
 ``` javascript
 {
   default: function(answers){
-  	var done = this.async();
-  	getAsynchronously(function(value){
-  	  done(value);
-  	});
+    var done = this.async();
+    getAsynchronously(function(value){
+      done(value);
+    });
   },
   validate: function(input) {
 
