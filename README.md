@@ -1,4 +1,4 @@
-# asks [![npm](https://badge.fury.io/js/asks.svg)](http://badge.fury.io/js/asks) [![tests](https://travis-ci.org/kaelzhang/asks.svg?branch=master)](http://travis-ci.org/kaelzhang/asks) [![dependencies](https://david-dm.org/kaelzhang/asks.svg?theme=shields.io)](https://david-dm.org/kaelzhang/asks)
+# asks [![npm](https://badge.fury.io/js/asks.svg)](http://badge.fury.io/js/asks) [![tests](https://travis-ci.org/kaelzhang/node-asks.svg?branch=master)](http://travis-ci.org/kaelzhang/node-asks) [![dependencies](https://david-dm.org/kaelzhang/node-asks.svg?theme=shields.io)](https://david-dm.org/kaelzhang/node-asks)
 
 A collection of common interactive command line user interfaces.
 
