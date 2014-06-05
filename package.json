@@ -1,7 +1,7 @@
 {
   "name": "asks",
-  "version": "1.0.1",
-  "description": "A collection of common interactive command line user interfaces. An altered version of inquirer.js",
+  "version": "1.0.2",
+  "description": "An altered fork of inquirer.js, a collection of common interactive command line user interfaces.",
   "main": "lib/inquirer.js",
   "scripts": {
     "test": "grunt --verbose"
@@ -20,7 +20,7 @@
   "contributors": ["kael <i@kael.me>"],
   "license": "MIT",
   "dependencies": {
-    "async": "~0.8.0",
+    "async": "^0.9.0",
     "cli-color": "~0.3.2",
     "lodash": "~2.4.1",
     "mute-stream": "0.0.4",
