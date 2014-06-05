@@ -2,9 +2,10 @@
 
 A collection of common interactive command line user interfaces.
 
-This is an altered version of [inquirer.js](https://www.npmjs.org/package/inquirer). Thanks Simon Boudrias for the awesome package.
+This is an altered fork of [inquirer.js](https://www.npmjs.org/package/inquirer). Thanks Simon Boudrias for the awesome package.
 
 - `this.async()` is now available for `.default` function.
+- fixes the bug that `filter()` will be executed more than once. 
 
 ## Goal and philosophy
 
